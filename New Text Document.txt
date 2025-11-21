@@ -1,2 +1,0 @@
-pyinstaller --onefile --noconsole --name "LensAndLayeredSuite" --icon assets/icons/lens_layered.ico --splash "assets/splash_clean.png" --noconsole --clean --onefile --add-data "assets;assets" --add-data "icons;icons" lens_layered_suite_v2.py
-
