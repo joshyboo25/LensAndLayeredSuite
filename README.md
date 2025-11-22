@@ -134,5 +134,3 @@ Built by Josh
 Part of the Lens & Layered Designs creative ecosystem
 
 GitHub: @joshyboo25
-
-If you want this wrapped in collapsible sections, badges, or a GitHub-style “Installation” table, I can format those too.
