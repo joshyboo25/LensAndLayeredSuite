@@ -1,61 +1,92 @@
-Lens and Layered Suite v2.0
+Lens and Layered Suite v2.0 ⚡ – Creator Control Center
 
-A creator focused desktop control center designed for real world workflow across the Lens and Layered Designs ecosystem.
-The Suite brings multiple tools into one unified interface with a Stark inspired aesthetic and a clean, extensible architecture.
+A fully featured creator-focused desktop control center designed for real-world workflow across the Lens and Layered Designs ecosystem.
+Everything you need to build, edit, plan, organize, and execute your creative work — all in one UI with a Stark-inspired aesthetic.
 
-Overview
+📌 Overview
 
-Lens and Layered Suite v2.0 operates as an all in one command console for creators, photographers, developers, editors and builders.
-Instead of juggling separate scripts and windows, everything lives in one place with consistent UI, persistent configuration and modular expansion.
+The Lens and Layered Suite v2.0 is an all-in-one command console for photographers, editors, developers, designers, builders and creators.
+Instead of juggling separate scripts and random utilities, the Suite gives you a centralized, consistent, and expandable control center.
 
-Core areas include branding, media handling, system tools, car build helpers, developer utilities, game tools and finance tracking.
+It includes integrated tools for:
 
-Features
-Motivation hub
+• Branding
+• Media
+• System utilities
+• Networking
+• Development
+• Finance
+• Car build planning
+• Motivation
 
-Daily mindset feed, rotating text and focus helpers.
+All wrapped in a clean UI with persistent settings and modern visuals.
 
-Branding tools
+🌟 Features
+🧠 Motivation Hub
 
-Batch watermarking, organized exports and workflow helpers.
+Rotating focus text, mindset reinforcement, and simple daily boosts.
 
-System utilities
+🖋️ Branding Tools
 
-Quick cleanups, RAM flush, temp clearing and status logs.
+Batch watermarking
+Smart output organization
+Automatic logo handling
+Supports JPG, PNG, JPEG, WEBP
 
-Media manager
+⚙️ System Utilities
 
-Folder helpers and simple media workflows.
+RAM flush
+Temp cleanup
+Quick maintenance tasks
+Live logs
 
-Network tools
+🎞️ Media Manager
 
-Ping tests, connectivity checks and lightweight diagnostics.
+Folder helpers
+Simple workflow shortcuts
+Organization support
 
-Car tools
+🌐 Network Tools
 
-Build planning helpers and audio utilities.
+Ping testing
+Connectivity checks
+Diagnostics
 
-Developer and game utilities
+🚗 Car Tools
 
-Small workflow scripts and testing helpers.
+Build planning helpers
+Audio wiring helpers
+Future expansion planned
 
-Finance dashboard
+🧪 Developer and Game Tools
 
-Local JSON tracking for debt, payments and totals.
+Testing helpers
+Workflow boosters
+Mini-scripts for debugging
 
-Settings page
+💰 Finance Dashboard
 
-Theme options, behavior toggles, saved paths and persistent preferences.
+Debt tracking
+Payment logging
+Auto totals
+Local JSON storage
 
-Tech Stack
+🎛️ Settings
 
-Python 3.11 or newer
-Tkinter for UI
-Local JSON config and finance data
-Packaged with PyInstaller
+Themes
+Behavior toggles
+Saved file paths
+Persistent preferences
+
+🧩 Tech Stack
+
+Python 3.11+
+Tkinter UI
+Local JSON storage
+PyInstaller packaging
 Windows-optimized UX
 
-Project Structure
+📂 Project Structure
 LensAndLayeredSuite/
   src/
     lens_layered_control_center_full.py
@@ -73,11 +104,11 @@ LensAndLayeredSuite/
   LICENSE
   .gitignore
 
-Running from Source
+▶️ Running from Source
 
-Make sure Python 3.11 or newer is installed.
+Install Python 3.11 or newer.
 
-Clone the repository:
+Clone the repo:
 
 git clone https://github.com/joshyboo25/LensAndLayeredSuite.git
 cd LensAndLayeredSuite
@@ -87,9 +118,9 @@ Run the Suite:
 
 python src/lens_layered_control_center_full.py
 
-Building a Windows Executable
+🏗️ Building a Windows Executable
 
-Run the following from the project root:
+Run this from the project root:
 
 pyinstaller --onefile --noconsole ^
   --name "LensAndLayeredSuite" ^
@@ -98,42 +129,43 @@ pyinstaller --onefile --noconsole ^
   src/lens_layered_control_center_full.py
 
 
-The executable will appear in the dist directory.
+Your EXE will appear inside the dist folder.
 
-Data Storage
+💾 Data Storage
 
-The Suite stores user specific data in the user’s home directory.
+The Suite saves user data inside your home directory.
 
-Config file
+Config:
 LensAndLayered_SuiteConfig.json
 
-Finance data
+Finance Data:
 LensAndLayered_FinanceData.json
 
-Deleting these files resets the Suite to default settings.
+Deleting these files resets the Suite.
 
-Roadmap
-Short term
+📅 Roadmap
+Short Term
 
-Live theme switching in Settings
-Close confirmation behavior controlled by preferences
-Startup default view selection
-Payoff projections in Finance dashboard
+• Live theme switching
+• Startup default view
+• Configurable close-confirmation
+• Finance payoff projections
 
-Long term
+Long Term
 
-Expanded media processing and automated branding workflows
-Additional car build and audio calculators
-Signed Windows releases
-Full documentation and user guide
+• Media automation
+• Advanced branding workflows
+• Car audio calculators
+• Signed Windows releases
+• Full documentation and user guide
 
-License
-
-Licensed under the MIT License.
-See the LICENSE file for details.
-
-Author
+🧠 Author
 
 Built by Josh
 Part of the Lens and Layered Designs ecosystem
 GitHub: @joshyboo25
+
+📄 License
+
+MIT License
+See the LICENSE file for details.
