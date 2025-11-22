@@ -22,6 +22,8 @@ from pathlib import Path
 
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
+import webbrowser  # add this here
+
 
 try:
     import psutil  # optional – for live CPU / RAM stats
@@ -37,6 +39,13 @@ except Exception:
     ImageStat = None
     PngInfo = None
 
+# Close the PyInstaller splash screen if running as a bundled .exe
+try:
+    import pyi_splash
+    pyi_splash.update_text("Launching Lens and Layered Suite…")
+    pyi_splash.close()
+except Exception:
+    pass
 
 # -----------------------------------------------------------------------------
 # Branding and styling
@@ -67,13 +76,15 @@ OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 FINANCE_DATA_FILE = Path.home() / "LensAndLayered_FinanceData.json"
 
 from pathlib import Path
+import sys
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+ASSETS_DIR = BASE_DIR / "assets"
 
-WATERMARK_DIR = BASE_DIR / "assets" / "watermark images"
-
+WATERMARK_DIR = ASSETS_DIR / "watermark images"
 WATERMARK_LIGHT = WATERMARK_DIR / "watermark_light.png"
 WATERMARK_DARK = WATERMARK_DIR / "watermark_dark.png"
+
 
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
@@ -1745,7 +1756,13 @@ class LensLayeredSuiteControlCenter:
     def _build_about_view(self):
         frame = tk.Frame(self.card, bg=BG_CARD)
 
-        title = tk.Label(frame, text="About Lens & Layered Suite", font=FONT_TITLE, fg=CYAN, bg=BG_CARD)
+        title = tk.Label(
+            frame,
+            text="About Lens & Layered Suite",
+            font=FONT_TITLE,
+            fg=CYAN,
+            bg=BG_CARD,
+        )
         title.pack(anchor="w", padx=24, pady=(20, 4))
 
         subtitle = tk.Label(
@@ -1762,7 +1779,7 @@ class LensLayeredSuiteControlCenter:
         grid.columnconfigure(0, weight=1)
         grid.columnconfigure(1, weight=1)
 
-        # What this suite is for
+        # --- Left card ---
         card_left = tk.Frame(
             grid,
             bg=BG_CARD,
@@ -1782,16 +1799,18 @@ class LensLayeredSuiteControlCenter:
         )
         lbl1.pack(anchor="w", pady=(0, 6))
 
+        desc = (
+            "Started as personal tools and grew into a control room for:\n"
+            "• System cleanup and RAM refresh utilities\n"
+            "• Automated watermarking for photos\n"
+            "• Network and dev helpers\n"
+            "• Car audio calculators and build utilities\n"
+            "• A small finance dashboard with local storage\n"
+        )
+
         text1 = tk.Label(
             card_left,
-            text=(
-                "Started as personal tools and grew into a control room for:\n"
-                "• System cleanup and RAM refresh utilities\n"
-                "• Automated watermarking for photos\n"
-                "• Network and dev helpers\n"
-                "• Car audio calculators and build utilities\n"
-                "• A small finance dashboard with local storage\n"
-            ),
+            text=desc,
             font=FONT_SUB,
             fg=TEXT_PRIMARY,
             bg=BG_CARD,
@@ -1800,7 +1819,7 @@ class LensLayeredSuiteControlCenter:
         )
         text1.pack(anchor="w")
 
-        # Created by / tech stack
+        # --- Right card ---
         card_right = tk.Frame(
             grid,
             bg=BG_CARD,
@@ -1823,9 +1842,8 @@ class LensLayeredSuiteControlCenter:
         text2 = tk.Label(
             card_right,
             text=(
-                "Designed and coded by Josh under Lens & Layered Designs.\n"
-                "Built to turn single‑purpose scripts into a daily driver tool\n"
-                "that sits between content work and car builds."
+                "Designed and coded by Josh for Lens & Layered Designs.\n"
+                "Built to unify utilities into a clean, creator-friendly dashboard."
             ),
             font=FONT_SUB,
             fg=TEXT_PRIMARY,
@@ -1849,9 +1867,9 @@ class LensLayeredSuiteControlCenter:
             text=(
                 "• Python 3 with Tkinter UI\n"
                 "• Local JSON and file based storage\n"
-                "• Optional psutil + Pillow for extra features\n"
-                "• Packaged into EXE builds for Windows desktop\n"
-                "• Custom Lens & Layered theme with cyan accents\n"
+                "• Optional psutil + Pillow\n"
+                "• Packaged into EXE builds\n"
+                "• Custom Lens & Layered theme\n"
             ),
             font=FONT_SUB,
             fg=TEXT_PRIMARY,
@@ -1861,21 +1879,22 @@ class LensLayeredSuiteControlCenter:
         )
         text3.pack(anchor="w")
 
+        # quick links
         btn_row = tk.Frame(card_right, bg=BG_CARD)
         btn_row.pack(anchor="w", pady=(10, 0))
-
-        import webbrowser
 
         def open_github():
             webbrowser.open("https://github.com/joshyboo25")
 
-        def open_suite_repo():
-            # Update this once the suite repo is live
-            webbrowser.open("https://github.com/joshyboo25")
+        def open_repo():
+            webbrowser.open("https://github.com/joshyboo25/LensAndLayeredSuite")
 
-        btn_profile = tk.Button(
+        def open_site():
+            webbrowser.open("https://lenslayereddesigns.netlify.app/home#gallery")
+
+        tk.Button(
             btn_row,
-            text="Open GitHub profile",
+            text="GitHub Profile",
             command=open_github,
             font=("Segoe UI", 10, "bold"),
             fg=BG_MAIN,
@@ -1883,23 +1902,37 @@ class LensLayeredSuiteControlCenter:
             bd=0,
             padx=12,
             pady=4,
-        )
-        btn_profile.pack(side="left")
+        ).pack(side="left")
 
-        btn_repo = tk.Button(
+        tk.Button(
             btn_row,
-            text="View suite repository",
-            command=open_suite_repo,
+            text="Suite Repository",
+            command=open_repo,
             font=("Segoe UI", 10),
             fg=TEXT_PRIMARY,
             bg="#111827",
             bd=0,
             padx=12,
             pady=4,
-        )
-        btn_repo.pack(side="left", padx=(10, 0))
+        ).pack(side="left", padx=(10, 0))
 
+        tk.Button(
+            btn_row,
+            text="Lens & Layered Website",
+            command=open_site,
+            font=("Segoe UI", 10),
+            fg=BG_MAIN,
+            bg="#111827",
+            bd=0,
+            padx=12,
+            pady=4,
+        ).pack(side="left", padx=(10, 0))
+
+        frame.pack(fill="both", expand=True)
         self.views["about"] = frame
+
+
+
 
 
 # -----------------------------------------------------------------------------
