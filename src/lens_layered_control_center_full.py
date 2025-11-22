@@ -66,8 +66,15 @@ OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
 FINANCE_DATA_FILE = Path.home() / "LensAndLayered_FinanceData.json"
 
-WATERMARK_LIGHT = Path("watermark_light.png")
-WATERMARK_DARK = Path("watermark_dark.png")
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
+WATERMARK_DIR = BASE_DIR / "assets" / "watermark images"
+
+WATERMARK_LIGHT = WATERMARK_DIR / "watermark_light.png"
+WATERMARK_DARK = WATERMARK_DIR / "watermark_dark.png"
+
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
 
